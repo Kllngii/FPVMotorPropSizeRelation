@@ -2,10 +2,11 @@
   "name": "FPVMotorPropSizeRelation",
   "version": "1.0.0",
   "description": "A simple tool to look at the relation between motor size, prop size and quad size of your FPV quad.",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"No tests were specified!\" && exit 0",
-    "start": "electron ."
+    "start": "tsc && electron ./dist/app.js",
+    "develop": "tsc && electron ./dist/develop.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,10 @@
   },
   "homepage": "https://github.com/Kllngii/FPVMotorPropSizeRelation#readme",
   "dependencies": {
+    "typescript": "^3.8.3",
     "yarn": "^1.22.4"
+  },
+  "devDependencies": {
+    "electron": "8.2.0"
   }
 }
