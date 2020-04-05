@@ -2,7 +2,7 @@ import { app, remote } from 'electron';
 import { join } from 'path';
 import { writeFileSync, readFileSync } from 'fs';
 
-class Store {
+export class Store {
   private path: string | number | Buffer | import("url").URL;
   private data: { [x: string]: any; };
   constructor(opts: { configName: string; defaults: any; }) {
@@ -11,10 +11,13 @@ class Store {
     this.data = parseDataFile(this.path, opts.defaults);
   }
   get(key: string | number) {
-    return this.data[key];
+    let data = this.data[key];
+    console.debug("Loading data: " + data);
+    return data;
   }
   set(key: string | number, val: any) {
     this.data[key] = val;
+    console.debug("Storing data: " + val);
     writeFileSync(this.path, JSON.stringify(this.data));
   }
 }
@@ -26,6 +29,3 @@ function parseDataFile(filePath: string | number | Buffer | import("url").URL, d
     return defaults;
   }
 }
-
-// expose the class
-module.exports = Store;
