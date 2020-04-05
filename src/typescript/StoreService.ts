@@ -12,12 +12,10 @@ export class Store {
   }
   get(key: string | number) {
     let data = this.data[key];
-    console.debug("Loading data: " + data);
     return data;
   }
   set(key: string | number, val: any) {
     this.data[key] = val;
-    console.debug("Storing data: " + val);
     writeFileSync(this.path, JSON.stringify(this.data));
   }
 }
